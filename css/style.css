@@ -1,3 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=DynaPuff&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&display=swap');
+
+body {
+    font-family: 'Playfair Display', serif;
+}
+
 header {
     min-height: 450px;
+}
+
+header h1 {
+    font-family: 'DynaPuff', cursive;
+    font-size: 3.5rem;
 }
