@@ -102,5 +102,4 @@ document.getElementById("total-cost-btn").addEventListener('click', function () 
         const totalCostElement = document.getElementById("total-cost");
         totalCostElement.innerText = totalCost;
     }
-
 })
