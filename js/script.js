@@ -25,6 +25,7 @@ function getValueFromInput(elementId) {
     const elementField = document.getElementById(elementId);
     const elementFieldString = elementField.value;
     const elementValue = parseFloat(elementFieldString);
+    elementField.value = '';
     return elementValue;
 }
 
@@ -89,7 +90,9 @@ document.getElementById("player-cost-btn").addEventListener('click', function ()
 })
 
 document.getElementById("total-cost-btn").addEventListener('click', function () {
-    const playerExpenses = document.getElementById("player-expenses");
+    const playerExpensesElement = document.getElementById("player-expenses");
+    const playerExpensesString = playerExpensesElement.innerText;
+    const playerExpenses = parseFloat(playerExpensesString);
     const managerCost = getValueFromInput("manager-cost");
     const coachCost = getValueFromInput("coach-cost");
     if (isNaN(managerCost) || isNaN(coachCost)) {
@@ -99,4 +102,5 @@ document.getElementById("total-cost-btn").addEventListener('click', function () 
         const totalCostElement = document.getElementById("total-cost");
         totalCostElement.innerText = totalCost;
     }
+
 })
