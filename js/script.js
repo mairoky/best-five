@@ -1,18 +1,31 @@
+// get player name
 function getPlayerName(elementId) {
     const playerName = document.getElementById(elementId);
     const name = playerName.innerText;
     return name;
 }
-
+// set player name into the list
 function setPlayerName(name) {
     const playerList = document.getElementById("player-list");
     const singlePlayer = document.createElement("li");
     singlePlayer.innerText = name;
-    playerList.appendChild(singlePlayer);
+    if (playerList.childElementCount < 5) {
+        playerList.appendChild(singlePlayer);
+    } else {
+        alert("You can't select more than five player!!");
+    }
 }
-
+// Disable Button
 function disableBtn(elementId) {
     document.getElementById(elementId).disabled = true;
+}
+
+// get input value for budget calculation
+function getValueFromInput(elementId) {
+    const elementField = document.getElementById(elementId);
+    const elementFieldString = elementField.value;
+    const elementValue = parseFloat(elementFieldString);
+    return elementValue;
 }
 
 document.getElementById("btn-player-one").addEventListener('click', function () {
@@ -59,4 +72,31 @@ document.getElementById("btn-player-nine").addEventListener('click', function ()
     const name = getPlayerName("player-nine");
     setPlayerName(name);
     disableBtn("btn-player-nine");
+})
+
+// Budget Calculation
+document.getElementById("player-cost-btn").addEventListener('click', function () {
+    const playerList = document.getElementById("player-list");
+    const totalPlayer = playerList.childElementCount;
+    const perPlayerCost = getValueFromInput("per-player-cost");
+    if (isNaN(perPlayerCost)) {
+        alert("Type Valid Input!!!");
+    } else {
+        const playerExpenses = totalPlayer * perPlayerCost;
+        const playerExpensesElement = document.getElementById("player-expenses");
+        playerExpensesElement.innerText = playerExpenses;
+    }
+})
+
+document.getElementById("total-cost-btn").addEventListener('click', function () {
+    const playerExpenses = document.getElementById("player-expenses");
+    const managerCost = getValueFromInput("manager-cost");
+    const coachCost = getValueFromInput("coach-cost");
+    if (isNaN(managerCost) || isNaN(coachCost)) {
+        alert("Type Valid Input!!!");
+    } else {
+        const totalCost = playerExpenses + managerCost + coachCost;
+        const totalCostElement = document.getElementById("total-cost");
+        totalCostElement.innerText = totalCost;
+    }
 })
